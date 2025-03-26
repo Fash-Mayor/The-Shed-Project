@@ -1,0 +1,59 @@
+#:kivy 1.0.9
+#:import Window kivy.core.window.Window
+
+<RelativeLayout>:
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.1, 0.4, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Image:
+        id: img
+        source: "The-Juicebox.jpg"
+        size_hint: 0.5, 0.7
+        pos_hint: {"center_x": 0.5, "center_y": 0.75}
+
+    Label:
+        id: fileChooserLabel
+        text: "Select PDF to Convert"
+        pos_hint: {"center_x": 0.3, "center_y": 0.5}
+        size_hint: 1, 1
+        font_size: 20
+
+    Button:
+        id: select_button
+        text: "Select"
+        size_hint: None, None
+        pos_hint: {"center_x": 0.63, "center_y": 0.5}
+        height: 40
+        on_press: root.fileChooser()
+
+    Label:
+        id: locationLabel
+        text: ""
+        pos_hint: {"center_x": 0.25, "center_y": 0.43}
+        size_hint: 1, 1
+        font_size: 20
+        color: 0, 0, 1, 1
+
+    Button:
+        id: convertButton
+        text: "Convert"
+        pos_hint: {"center_x": 0.5, "center_y": 0.35}
+        size_hint: 0.2, 0.1
+        size: 75, 75
+        font_name: "Verdana"
+        bold: True
+        font_size: 24
+        background_color: 0, 1, 0.5, 1
+        on_press: root.convertToAudioThread()
+
+    Label:
+        id: successErrlabel
+        text: ""
+        pos_hint: {"center_x": 0.5, "center_y": 0.23}
+        size_hint: 1, 1
+        font_size: 20
+        color: 1, 0, 0, 1
