@@ -1,0 +1,44 @@
+Title: Day 1: The Shed Project - PDF to Audio Converter Done!
+Body:
+"The Shed Project" starts strong with my first finished tool: a PDF-to-audio converter! This app lets you pick a PDF and hear it read aloud—great for hands-free learning. Built it with Kivy while leveling up my Python skills.  
+What I Learned: Kivy’s event handling (binding buttons) and integrating external libs like PyPDF2 and pyttsx3 were the big wins. Syncing UI with backend logic was tricky but rewarding.  
+How I Achieved It: Used a FileChooserListView for picking PDFs and a button to trigger conversion. Here’s the key part:  
+python
+
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.filechooser import FileChooserListView
+from kivy.uix.button import Button
+import PyPDF2
+import pyttsx3
+
+class PdfAudioApp(App):
+    def build(self):
+        layout = BoxLayout(orientation='vertical')
+        self.file_chooser = FileChooserListView(filters=['*.pdf'])
+        self.convert_btn = Button(text='Play Audio', on_press=self.convert)
+        layout.add_widget(self.file_chooser)
+        layout.add_widget(self.convert_btn)
+        return layout
+
+    def convert(self, instance):
+        pdf_path = self.file_chooser.selection[0]
+        pdf = PyPDF2.PdfReader(open(pdf_path, 'rb'))
+        text = ''.join(page.extract_text() for page in pdf.pages)
+        engine = pyttsx3.init()
+        engine.say(text)
+        engine.runAndWait()
+
+PdfAudioApp().run()
+
+Result: It works! Select a PDF, hit "Play Audio," and it reads the whole doc aloud. Simple but powerful.  
+Next Steps: Day 2, I’ll tackle a new tool—maybe a note-taking app. Suggestions welcome!  
+Tips
+If you hit specific hurdles (e.g., PDF text extraction issues or Kivy crashes), mention them briefly in "What I Learned" to show the grind.
+
+Share it on X with #Kivy #Python #TheShedProject—people love seeing finished projects!
+
+If you’ve got a unique feature (like voice selection or speed control), flaunt it in the "Result."
+
+What do you think? Want to tweak anything or add a personal touch? And what’s your next app idea for Day 2?
+
