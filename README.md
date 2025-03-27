@@ -1,2 +1,2 @@
 # The Shed Project
- The Shed Project is centered areound creating tools for devices.
+ The Shed Project is centered around creating tools for devices.
