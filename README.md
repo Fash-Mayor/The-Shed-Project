@@ -17,7 +17,7 @@
 
  Maybe a lil Lorem ipsoum dollor sit amet..idk 
 
-## Project 1
+## #Project 1
 ### Project 1 Description
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 ### Project 1 Code
@@ -34,7 +34,7 @@ This project is about creating a tool for devices. The tool will be used to perf
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 
 
-## Project 2
+## #Project 2
 ### Project 2 Description
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 ### Project 2 Code
