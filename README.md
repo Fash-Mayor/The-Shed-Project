@@ -2,6 +2,7 @@
 <p align="center">
   <img src="The_Shed_Project.png" alt="Your Image Description">
 </p>
+
 # The Shed Project
 ![Github last commit](https://img.shields.io/github/last-commit/Fash-Mayor/The-Shed-Project)
  The Shed Project is centered around creating tools for devices.
