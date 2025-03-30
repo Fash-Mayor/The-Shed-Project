@@ -10,14 +10,13 @@ The Shed Project is centered around creating tools for devices.
  - [Project 2](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#mp4-to-mp3)
  - [Project 3](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#music-player)
  - [Project 4](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#pdf-to-audio)
- - [Project 5](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-5)
+ - [Project 5](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#spotify-downloader)
  - [Project 6](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-6)
  - [Project 7](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-7)
  - [Project 8](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-8)
  - [Project 9](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-9)
  - [Project 10](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-10)
 
- Maybe a lil Lorem ipsoum dollor sit amet..idk 
 
 ## Audio Recorder 
 ### Project 1 Description
@@ -87,7 +86,7 @@ This project is about creating a tool for devices. The tool will be used to perf
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 
 
-## Project 5
+## Spotify Downloader
 ### Project 5 Description
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 ### Project 5 Code
