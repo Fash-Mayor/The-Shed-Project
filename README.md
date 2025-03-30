@@ -1,11 +1,8 @@
-<!-- ![TheShedProject.png](The_Shed_Project.png) -->
-<p align="center">
-  <img src="The_Shed_Project.png" alt="Your Image Description">
-</p>
-
+![TheShedProject.png](The_Shed_Project.png)
 # The Shed Project
 ![Github last commit](https://img.shields.io/github/last-commit/Fash-Mayor/The-Shed-Project)
- The Shed Project is centered around creating tools for devices.
+
+The Shed Project is centered around creating tools for devices.
 
 ## Table of Content (TOC)
 
