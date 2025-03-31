@@ -7,7 +7,7 @@ The Shed Project is centered around creating tools for devices.
 ## Table of Content (TOC)
 
  - [Project 1 - Audio Recorder](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#audio-recorder)
- - [Project 2 - Mp4 to Mp3](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#mp4-to-mp3)
+ - [Project 2 - Mp4 to Mp3](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#mp4-to-mp3-audio-extractor)
  - [Project 3 - Music Player](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#music-player)
  - [Project 4 - PDF to Audio](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#pdf-to-audio)
  - [Project 5 - Spotify Downloader](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#spotify-downloader)
