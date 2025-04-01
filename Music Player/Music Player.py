@@ -41,7 +41,7 @@ class MusicPlayerApp(MDApp):
                                size_hint = (1, 1), font_size = 20, color = (0, 0, 0, 1))
         
         self.albumImage = Image(pos_hint = {"center_x": 0.5, "center_y": 0.65},
-                                size_hint = (0.7, 0.65))
+                                size_hint = (0.7, 0.55))
         
         self.playingLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.33},
                                   size_hint = (1, 1), font_size = 21, color = (0, 0, 0, 1))
@@ -76,7 +76,7 @@ class MusicPlayerApp(MDApp):
         elif os.path.exists(png_path):
             self.albumImage.source = png_path
         else:
-            self.albumImage.source = "default_album.png"
+            self.albumImage.source = "/Users/Fash Mayor/OneDrive/Documents/Getting Started/Lnt/Py/Python Project Apps/The-Shed-Project/Music Player/music_dir/default_album.png"
 
         self.sound.play()
         self.playingLabel.text = " === Playing === "
