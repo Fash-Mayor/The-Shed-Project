@@ -27,7 +27,7 @@ class MusicPlayerApp(MDApp):
             self.rect = Rectangle(size = layout.size, pos = layout.pos)
             layout.bind(size = self._update_rect, pos = self._update_rect)
 
-        self.music_dir = "/Users/Fash Mayor/OneDrive/Documents/Getting Started/Lnt/Py/Python Project Apps/The-Shed-Project/Music Player/music_dir"
+        self.music_dir = "/Users/Fash Mayor/OneDrive/Documents/Getting Started/Lnt/Py/Python Project Apps/The-Shed-Project/Music Player/music_dir/"
         self.music_files = os.listdir(self.music_dir)
         #print(self.music_files)
 
@@ -37,23 +37,30 @@ class MusicPlayerApp(MDApp):
         self.song_count = len(self.song_list)
         print(self.song_count)
 
-        self.songLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.96},
+        self.songLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.23},
                                size_hint = (1, 1), font_size = 20, color = (0, 0, 0, 1))
         
-        self.albumImage = Image(pos_hint = {"center_x": 0.5, "center_y": 0.55},
-                                size_hint = (0.8, 0.75))
+        self.albumImage = Image(pos_hint = {"center_x": 0.5, "center_y": 0.65},
+                                size_hint = (0.7, 0.65))
+        
+        self.playingLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.33},
+                                  size_hint = (1, 1), font_size = 21, color = (0, 0, 0, 1))
 
-        self.playButton = MDIconButton(pos_hint = {"center_x": 0.4, "center_y": 0.05}, 
+        self.playButton = MDIconButton(pos_hint = {"center_x": 0.42, "center_y": 0.12}, 
                                      icon = "play-circle-regular-24.png", on_press = self.playAudio)
         
-        self.stopButton = MDIconButton(pos_hint = {"center_x": 0.55, "center_y": 0.05}, 
+        self.stopButton = MDIconButton(pos_hint = {"center_x": 0.58, "center_y": 0.12}, 
                                      icon = "pause-circle-regular-24.png", on_press = self.stopAudio, disabled = True)
 
+        layout.add_widget(self.playingLabel)
         layout.add_widget(self.songLabel)
         layout.add_widget(self.albumImage)
         layout.add_widget(self.playButton)
         layout.add_widget(self.stopButton)
+
         Clock.schedule_once(self.playAudio)
+        self.playingLabel.text = " === Playing === "
+
         return layout
     
     def playAudio(self, obj):
@@ -61,12 +68,23 @@ class MusicPlayerApp(MDApp):
         print(self.song_title)
         self.sound = SoundLoader.load("{}/{}".format(self.music_dir, self.song_title))
         self.songLabel.text = self.song_title[0:-4]
-        self.albumImage.source = "C:/Users/Fash Mayor/OneDrive/Documents/Getting Started/Lnt/Py/Python Project Apps/The-Shed-Project/Music Player/music_dir/gsp Cover.png"
+
+        jpg_path = os.path.join(self.music_dir, self.songLabel.text + ".jpg")
+        png_path = os.path.join(self.music_dir, self.songLabel.text + ".png")
+        if os.path.exists(jpg_path):
+            self.albumImage.source = jpg_path
+        elif os.path.exists(png_path):
+            self.albumImage.source = png_path
+        else:
+            self.albumImage.source = "default_album.png"
+
         self.sound.play()
+        self.playingLabel.text = " === Playing === "
         self.stopButton.disabled = False
 
     def stopAudio(self, obj):
         self.sound.stop()
+        self.playingLabel.text = " === Stopped === "
 
     def _update_rect(self, instance, value):
         self.rect.pos = instance.pos
