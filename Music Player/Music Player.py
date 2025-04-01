@@ -2,10 +2,8 @@ import os
 import random
 
 import kivy
-import kivymd
 from kivymd.app import MDApp
 from kivy.uix.relativelayout import RelativeLayout
-from kivy.uix.button import Button
 from kivymd.uix.button import MDIconButton
 from kivy.uix.label import Label
 from kivy.uix.image import Image
@@ -17,7 +15,7 @@ from kivy.graphics import Rectangle
 from kivy.graphics import Color
 
 Window.size = (400, 600)
-
+kivy.require("2.1.0")
 class MusicPlayerApp(MDApp):
     def build(self):
         layout = RelativeLayout()
