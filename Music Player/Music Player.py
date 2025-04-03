@@ -16,7 +16,7 @@ from kivy.graphics import Rectangle
 from kivy.graphics import Color
 
 Window.size = (400, 600)
-kivy.require("2.1.0")
+
 class MusicPlayerApp(MDApp):
     def build(self):
         layout = RelativeLayout()
@@ -45,8 +45,8 @@ class MusicPlayerApp(MDApp):
         self.playingLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.33},
                                   size_hint = (1, 1), font_size = 21, color = (0, 0, 0, 1))
 
-        self.progressbar = ProgressBar(max = 100, value = 0, pos_hint = {"center_x": 0.5, "center_y": 0.19},
-                                       size_hint = (0.8, 0.75))
+        self.progressbar = ProgressBar(max = 100, value = 0, size_hint = (0.8, 0.75),
+                                       pos_hint = {"center_x": 0.5, "center_y": 0.19},)
 
         self.playButton = MDIconButton(pos_hint = {"center_x": 0.42, "center_y": 0.12}, 
                                      icon = "play", on_press = self.playAudio)
@@ -81,7 +81,7 @@ class MusicPlayerApp(MDApp):
         elif os.path.exists(png_path):
             self.albumImage.source = png_path
         else:
-            self.albumImage.source = "/Users/Fash Mayor/OneDrive/Documents/Getting Started/Lnt/Py/Python Project Apps/The-Shed-Project/Music Player/music_dir/default_album.png"
+            self.albumImage.source = "music_dir/default_album.png"
 
         self.progressbarEvent = Clock.schedule_interval(self.updateprogressbar, self.sound.length / 60)
 
