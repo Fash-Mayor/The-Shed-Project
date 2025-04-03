@@ -4,9 +4,10 @@ import random
 import kivy
 from kivymd.app import MDApp
 from kivy.uix.relativelayout import RelativeLayout
-from kivymd.uix.button import MDIconButton
+from kivymd.uix.button.button import MDIconButton
 from kivy.uix.label import Label
 from kivy.uix.image import Image
+from kivy.uix.progressbar import ProgressBar
 
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
@@ -35,7 +36,7 @@ class MusicPlayerApp(MDApp):
         self.song_count = len(self.song_list)
         print(self.song_count)
 
-        self.songLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.23},
+        self.songLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.26},
                                size_hint = (1, 1), font_size = 20, color = (0, 0, 0, 1))
         
         self.albumImage = Image(pos_hint = {"center_x": 0.5, "center_y": 0.65},
@@ -44,17 +45,21 @@ class MusicPlayerApp(MDApp):
         self.playingLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.33},
                                   size_hint = (1, 1), font_size = 21, color = (0, 0, 0, 1))
 
+        self.progressbar = ProgressBar(max = 100, value = 0, pos_hint = {"center_x": 0.5, "center_y": 0.19},
+                                       size_hint = (0.8, 0.75))
+
         self.playButton = MDIconButton(pos_hint = {"center_x": 0.42, "center_y": 0.12}, 
-                                     icon = "play-circle-regular-24.png", on_press = self.playAudio)
+                                     icon = "play", on_press = self.playAudio)
         
         self.stopButton = MDIconButton(pos_hint = {"center_x": 0.58, "center_y": 0.12}, 
-                                     icon = "pause-circle-regular-24.png", on_press = self.stopAudio, disabled = True)
+                                     icon = "pause", on_press = self.stopAudio, disabled = True)
 
         layout.add_widget(self.playingLabel)
         layout.add_widget(self.songLabel)
         layout.add_widget(self.albumImage)
         layout.add_widget(self.playButton)
         layout.add_widget(self.stopButton)
+        layout.add_widget(self.progressbar)
 
         Clock.schedule_once(self.playAudio)
         self.playingLabel.text = " === Playing === "
@@ -62,6 +67,8 @@ class MusicPlayerApp(MDApp):
         return layout
     
     def playAudio(self, obj):
+        self.playButton.disabled = True
+        self.stopButton.disabled = False
         self.song_title = self.song_list[random.randrange(0, self.song_count)]
         print(self.song_title)
         self.sound = SoundLoader.load("{}/{}".format(self.music_dir, self.song_title))
@@ -76,17 +83,26 @@ class MusicPlayerApp(MDApp):
         else:
             self.albumImage.source = "/Users/Fash Mayor/OneDrive/Documents/Getting Started/Lnt/Py/Python Project Apps/The-Shed-Project/Music Player/music_dir/default_album.png"
 
+        self.progressbarEvent = Clock.schedule_interval(self.updateprogressbar, self.sound.length / 60)
+
         self.sound.play()
         self.playingLabel.text = " === Playing === "
         self.stopButton.disabled = False
 
     def stopAudio(self, obj):
         self.sound.stop()
+        self.playButton.disabled = False
+        self.stopButton.disabled = True
         self.playingLabel.text = " === Stopped === "
+
+    def updateprogressbar(self, value):
+        if self.progressbar.value < 100:
+            self.progressbar.value += 1
+
 
     def _update_rect(self, instance, value):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
     
-if __name__ == "__main__":
-    MusicPlayerApp().run()
+
+MusicPlayerApp().run()
