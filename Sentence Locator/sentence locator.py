@@ -27,7 +27,7 @@ class SentenceLocatorApp(MDApp):
     
 
     def search(self, event):
-        pass
+        self.searchingLabel.text = "==Searching=="
 
 
     def build(self):
@@ -51,13 +51,22 @@ class SentenceLocatorApp(MDApp):
                                       font_name = "Tahoma", font_size = 20, bold = True, color = (0, 0, 0, 1))
         
         self.findmeTextbox = TextInput(size_hint = (0.9, 0.31), pos_hint = {"center_x": 0.48, "center_y": 0.6}, font_name = "Tahoma",
-                                       font_size = 24)
+                                       font_size = 20)
         
         self.findmeButton = Button(text = "Search", size_hint = (None, None), height = 40, pos_hint = {"center_x": 0.14, "center_y": 0.39},
                                    on_press = self.search)
+        
+        self.searchingLabel = Label(text = "", size_hint = (1, 1), font_size = 24, font_name = "Tahoma", bold = True, color = (0, 0, 0, 1),
+                                    pos_hint = {"center_x": 0.55, "center_y": 0.39})
+        
+        self.displayresult = TextInput(size_hint = (0.9, 0.31), pos_hint = {"center_x": 0.48, "center_y": 0.19}, font_name = "Tahoma",
+                                       font_size = 20, disabled = True)
+        
 
         
         #adding widgets to layout
+        layout.add_widget(self.displayresult)
+        layout.add_widget(self.searchingLabel)
         layout.add_widget(self.findmeButton)
         layout.add_widget(self.findmeTextbox)
         layout.add_widget(self.instructionLabel)

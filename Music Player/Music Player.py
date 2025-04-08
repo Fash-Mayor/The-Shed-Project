@@ -1,5 +1,6 @@
 import os
 import random
+import time
 
 import kivy
 from kivymd.app import MDApp
@@ -54,12 +55,20 @@ class MusicPlayerApp(MDApp):
         self.stopButton = MDIconButton(pos_hint = {"center_x": 0.58, "center_y": 0.12}, 
                                      icon = "pause", on_press = self.stopAudio, disabled = True)
 
+        self.currenttime= Label(text = "00:00", pos_hint = {"center_x": 0.16, "center_y": 0.16},
+                                size_hint = (1, 1), font_size = 18)
+
+        self.totaltime= Label(text = "00:00", pos_hint = {"center_x": 0.16, "center_y": 0.16},
+                                size_hint = (1, 1), font_size = 18)
+
         layout.add_widget(self.playingLabel)
         layout.add_widget(self.songLabel)
         layout.add_widget(self.albumImage)
         layout.add_widget(self.playButton)
         layout.add_widget(self.stopButton)
         layout.add_widget(self.progressbar)
+        layout.add_widget(self.currenttime)
+        layout.add_widget(self.totaltime)
 
         Clock.schedule_once(self.playAudio)
         self.playingLabel.text = " === Playing === "
@@ -84,6 +93,7 @@ class MusicPlayerApp(MDApp):
             self.albumImage.source = "music_dir/default_album.png"
 
         self.progressbarEvent = Clock.schedule_interval(self.updateprogressbar, self.sound.length / 60)
+        self.timeEvent = Clock.schedule_interval(self.settime, 1)
 
         self.sound.play()
         self.playingLabel.text = " === Playing === "
@@ -95,10 +105,22 @@ class MusicPlayerApp(MDApp):
         self.stopButton.disabled = True
         self.playingLabel.text = " === Stopped === "
 
+        self.progressbarEvent.cancel()
+        self.timeEvent.cancel()
+        self.progressbar.value = 0
+        self.currenttime.text = "00:00"
+        self.totaltime.text = "00:00"
+
     def updateprogressbar(self, value):
         if self.progressbar.value < 100:
             self.progressbar.value += 1
 
+    def settime(self, t):
+        current_time = time.strftime("%M:%S", time.gmtime(self.progressbar.value))
+        total_time = time.strftime("%M:%S", time.gmtime(self.sound.length))
+
+        self.currenttime.text = current_time
+        self.totaltime.text = total_time
 
     def _update_rect(self, instance, value):
         self.rect.pos = instance.pos
