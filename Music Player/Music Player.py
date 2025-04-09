@@ -9,6 +9,7 @@ from kivymd.uix.button.button import MDIconButton
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.progressbar import ProgressBar
+from kivy.uix.slider import Slider
 
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
@@ -56,10 +57,14 @@ class MusicPlayerApp(MDApp):
                                      icon = "pause", on_press = self.stopAudio, disabled = True)
 
         self.currenttime= Label(text = "00:00", pos_hint = {"center_x": 0.16, "center_y": 0.16},
-                                size_hint = (1, 1), font_size = 18)
+                                size_hint = (1, 1), font_size = 18, color = (0, 0, 0, 1))
 
-        self.totaltime= Label(text = "00:00", pos_hint = {"center_x": 0.16, "center_y": 0.16},
-                                size_hint = (1, 1), font_size = 18)
+        self.totaltime= Label(text = "00:00", pos_hint = {"center_x": 0.84, "center_y": 0.16},
+                                size_hint = (1, 1), font_size = 18, color = (0, 0, 0, 1))
+
+        self.volumeslider = Slider(min= 0, value = 0.5, orientation = "horizontal", size_hint = (0.2, 0.2),
+                                   pos_hint = {"center_x": 0.2, "center_y": 0.05})
+
 
         layout.add_widget(self.playingLabel)
         layout.add_widget(self.songLabel)
@@ -69,9 +74,15 @@ class MusicPlayerApp(MDApp):
         layout.add_widget(self.progressbar)
         layout.add_widget(self.currenttime)
         layout.add_widget(self.totaltime)
+        layout.add_widget(self.volumeslider)
 
         Clock.schedule_once(self.playAudio)
         self.playingLabel.text = " === Playing === "
+
+        def volume(instance, value):
+            self.sound.volume = value
+
+        self.volumeslider.bind(value = volume)
 
         return layout
     
