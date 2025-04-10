@@ -2,7 +2,6 @@ import os
 import random
 import time
 
-import kivy
 from kivymd.app import MDApp
 from kivy.uix.relativelayout import RelativeLayout
 from kivymd.uix.button.button import MDIconButton

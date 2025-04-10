@@ -11,8 +11,8 @@ The Shed Project is centered around creating tools for devices.
  - [Project 3 - Music Player](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#music-player)
  - [Project 4 - PDF to Audio](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#pdf-to-audio)
  - [Project 5 - Spotify Downloader](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#spotify-downloader)
- - [Project 6](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-6)
- - [Project 7](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-7)
+ - [Project 6 - Password Generator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#password-generator)
+ - [Project 7 - Sentence Locator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#sentence-locator)
  - [Project 8](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-8)
  - [Project 9](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-9)
  - [Project 10](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-10)
@@ -103,7 +103,7 @@ This project is about creating a tool for devices. The tool will be used to perf
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 
 
-## Project 6
+## Password Generator
 ### Project 6 Description
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 ### Project 6 Code
@@ -120,7 +120,7 @@ This project is about creating a tool for devices. The tool will be used to perf
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 
 
-## Project 7
+## Sentence Locator
 ### Project 7 Description
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 ### Project 7 Code
