@@ -101,30 +101,31 @@ class AudioRecorderApp(MDApp):
         layout = RelativeLayout()
 
         with layout.canvas.before:
-            Color(1.8, 0.8, 1.8)
+            Color(1.8, 0.8, 1.8, 1)
             self.rect = Rectangle(size = layout.size, pos = layout.pos)
 
             layout.bind(size = self._update_rect, pos = self._update_rect)
 
         #widgets
-        self.record_button = Button(text = "Record", pos_hint = {"center_x": 0.5, "center_y": 0.8},
+        self.recordButton = Button(text = "Record", pos_hint = {"center_x": 0.5, "center_y": 0.8},
                                     size_hint = (0.4, 0.23), font_name = "verdana", bold = True,
-                                    font_size = 30, background_color = (1, 0, 0), on_press = self.start_recording)
+                                    font_size = 30, background_color = (1, 0, 0, 1), on_press = self.start_recording)
         
-        self.stop_buton = Button(text = "Stop Recording", pos_hint = {"center_x": 0.5, "center_y": 0.25},
+        self.stopButton = Button(text = "Stop Recording", pos_hint = {"center_x": 0.5, "center_y": 0.25},
                                 size_hint = (0.7, 0.23), font_name = "Verdana", bold = True, font_size = 24,
-                                background_color = (0, 1, 0), disabled = True, on_press = self.stop_recording)
+                                background_color = (0, 1, 0, 1), disabled = True, on_press = self.stop_recording)
         
-        self.message_label = Label(text = "", pos_hint = {"center_x": 0.5, "center_y": 0.5},
+        self.messageLabel = Label(text = "", pos_hint = {"center_x": 0.5, "center_y": 0.5},
                                    font_size = 24, font_name = "Tahoma", bold = True,
-                                   color = (1, 0.1, 0.4))
+                                   color = (1, 0.1, 0.4, 1))
 
         #add widgets to layout
-        layout.add_widget(self.message_label)
-        layout.add_widget(self.record_button)
-        layout.add_widget(self.stop_buton)
+        layout.add_widget(self.messageLabel)
+        layout.add_widget(self.stopButton)
+        layout.add_widget(self.recordButton)
         return layout
     
+    #changing backgroundcolor according to the resizing of screen. Kinda like responsiveness but for backgroundcolor 
     def _update_rect(self, instance, value):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
