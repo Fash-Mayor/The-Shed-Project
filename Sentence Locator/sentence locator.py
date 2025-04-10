@@ -1,5 +1,3 @@
-import kivy
-
 from kivymd.app import MDApp
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.label import Label

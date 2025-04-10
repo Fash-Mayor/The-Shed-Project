@@ -1,7 +1,3 @@
-import os
-import random
-import time
-
 from kivymd.app import MDApp
 from kivy.uix.relativelayout import RelativeLayout
 from kivymd.uix.button.button import MDIconButton
@@ -9,12 +5,14 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.slider import Slider
-
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 from kivy.core.window import Window
-from kivy.graphics import Rectangle
-from kivy.graphics import Color
+from kivy.graphics import Rectangle, Color
+
+import os
+import random
+import time
 
 Window.size = (400, 600)
 
@@ -37,6 +35,7 @@ class MusicPlayerApp(MDApp):
         self.song_count = len(self.song_list)
         print(self.song_count)
 
+        #widgets
         self.songLabel = Label(pos_hint = {"center_x": 0.5, "center_y": 0.26},
                                size_hint = (1, 1), font_size = 20, color = (0, 0, 0, 1))
         
@@ -64,7 +63,7 @@ class MusicPlayerApp(MDApp):
         self.volumeslider = Slider(min= 0, value = 0.5, orientation = "horizontal", size_hint = (0.2, 0.2),
                                    pos_hint = {"center_x": 0.2, "center_y": 0.05})
 
-
+        #adding widgets to layout
         layout.add_widget(self.playingLabel)
         layout.add_widget(self.songLabel)
         layout.add_widget(self.albumImage)
