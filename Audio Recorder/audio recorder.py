@@ -1,7 +1,6 @@
 from kivymd.app import MDApp
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.button import Button
-from kivymd.uix.button.button import MDIconButton
 from kivy.uix.label import Label
 from kivy.core.window import Window
 from kivy.graphics import Rectangle, Color
@@ -23,7 +22,7 @@ class AudioRecorderApp(MDApp):
     def get_downloads_path(self):
         if platform.system() == "Windows":
             return os.path.join(os.path.expanduser("~"), "Downloads")
-        elif platform.system() == "Darwin":  # macOS
+        elif platform.system() == "Darwin":  #macOS
             return os.path.join(os.path.expanduser("~"), "Downloads")
         elif platform.system() == "Linux":
             return os.path.join(os.path.expanduser("~"), "Downloads")

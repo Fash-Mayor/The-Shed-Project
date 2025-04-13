@@ -1,23 +1,19 @@
-import PyPDF3
-import pyttsx3
-import pdfplumber
-
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.app import App
 from kivy.uix.label import Label
-from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.core.window import Window
-from kivy.graphics import Rectangle
-from kivy.graphics import Color
+from kivy.graphics import Rectangle, Color
 
+import PyPDF3
+import pyttsx3
+import pdfplumber
 from threading import Thread
 from tkinter.filedialog import askopenfile
 
 #size of the app window
-Window.size = (500, 600)
+Window.size = (400, 350)
 
-#main class
 class PDF2AudioApp(App):
     #function that does the conversion
     def convertToAudio(self):
@@ -50,7 +46,7 @@ class PDF2AudioApp(App):
                     self.successErrlabel.pos_hint = {"center_x": 0.5, "center_y": 0.23}                    
                     
                     engine = pyttsx3.init()
-                    engine.save_to_file(finalText, "") #how to save to downloads folder??
+                    engine.save_to_file(finalText, "audiobook.mp3") #saves to the directory where the code is run#how to save to downloads folder??
                     engine.runAndWait()
 
                     self.successErrlabel.text = ""
@@ -93,10 +89,7 @@ class PDF2AudioApp(App):
             self.rect = Rectangle(size = layout.size, pos = layout.pos)
             layout.bind(size = self._update_rect, pos = self._update_rect)
 
-        #Creating the widgets(image, file chooser, select button, location label, convert button, success & error label)
-        self.img = Image(source = "The-Juicebox.jpg", size_hint = (0.5, 0.7),
-                         pos_hint = {"center_x": 0.5, "center_y": 0.75})
-
+        #widgets
         self.fileChooserLabel = Label(text = "Select PDF to Convert",
                                       pos_hint = {"center_x": 0.3, "center_y": 0.5},
                                       size_hint = (1, 1), font_size = 20)
@@ -121,7 +114,6 @@ class PDF2AudioApp(App):
         layout.add_widget(self.locationLabel)
         layout.add_widget(self.select_button)
         layout.add_widget(self.fileChooserLabel)
-        layout.add_widget(self.img)
         return layout
     
     #Enabling consistent color on the background even when resizing the app
@@ -129,5 +121,4 @@ class PDF2AudioApp(App):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
 
-if __name__ == "__main__":
-    PDF2AudioApp().run()
+PDF2AudioApp().run()

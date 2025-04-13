@@ -3,8 +3,7 @@ from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
-from kivy.graphics import Rectangle
-from kivy.graphics import Color
+from kivy.graphics import Rectangle, Color
 from kivy.core.window import Window
 
 import string
@@ -16,6 +15,8 @@ Window.size = (300, 400)
 
 class PasswordGeneratorApp(App):
     def getPasswordLength(self):
+        #collect the length of password from the user
+        #basic error handling 
         try:
             length = int(self.LengthofPassword.text)#max length is 94
 
@@ -33,6 +34,7 @@ class PasswordGeneratorApp(App):
         
 
     def generatePassword(self, length):
+        #code block to generate the password
         upper = string.ascii_uppercase
         lower = string.ascii_lowercase
         symbols = string.punctuation
@@ -47,13 +49,14 @@ class PasswordGeneratorApp(App):
 
 
     def generator(self, event):
+        #Thread to call function to generate password
         length = self.getPasswordLength()
         #password = self.generatePassword(length)
 
         if length is not None:
             #self.GeneratingLabel.text = "Generated"
             self.genpass_thread = Thread(target = partial(self.generatePassword, length))
-            self.genpass_thread.start()
+            self.genpass_thread.start() #start thread
         else:
             self.errLabel.text = "  Password must be more \nthan 8 in length. Try Again."
 
@@ -66,6 +69,7 @@ class PasswordGeneratorApp(App):
             self.rect = Rectangle(pos = layout.pos, size = layout.size)
             layout.bind(pos = self._update_rect, size = self._update_rect)
 
+        #widgets
         self.TitleTag = Label(text = "Password Generator", pos_hint = {"center_x": 0.5, "center_y": 0.9},
                               font_size = 28, font_name = "Verdana", color = (0.3, 0.3, 0.3), bold = True)
         
@@ -91,6 +95,7 @@ class PasswordGeneratorApp(App):
                                               size_hint = (0.7, 0.09), pos_hint = {"center_x": 0.5, "center_y": 0.2})
 
 
+        #add widgets to layout
         layout.add_widget(self.GeneratedPasswordDisplay)
         layout.add_widget(self.GeneratedPasswordLabel)
         layout.add_widget(self.GeneratingLabel)

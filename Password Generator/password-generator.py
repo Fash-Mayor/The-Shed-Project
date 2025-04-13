@@ -37,5 +37,4 @@ def generator():
         if choice != "y":
             break
 
-if __name__ == "__main__":
-    generator()
+generator()
