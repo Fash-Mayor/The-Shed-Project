@@ -121,4 +121,5 @@ class PDF2AudioApp(App):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
 
-PDF2AudioApp().run()
+if __name__ == "__main__":
+    PDF2AudioApp().run()

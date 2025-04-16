@@ -111,4 +111,5 @@ class PasswordGeneratorApp(App):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
     
-PasswordGeneratorApp().run()
+if __name__ =="_main__":
+    PasswordGeneratorApp().run()

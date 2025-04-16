@@ -1,31 +1,50 @@
-from kivymd.app import MDApp
+from kivy.app import App
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
-from kivymd.uix.button.button import MDButtonIcon
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.graphics import Rectangle
 from kivy.graphics import Color
 
 from tkinter.filedialog import askopenfile
-from threading import Thread
-from functools import partial
+from PyPDF2 import PdfReader
 
 Window.size = (450, 600)
 
-class SentenceLocatorApp(MDApp):
-    #file selection dialogue box for choosing PDF files (only)
+class SentenceLocatorApp(App):
+    def extract_text_from_pdf(self, event, pdf_file):
+        #extract text from selected pdf file
+        text = ""
+        try:
+            with open(pdf_file, 'rb') as file:
+                reader = PdfReader(file)
+                for page in reader.pages:
+                    text += page.extract_text() + "\n"
+        except FileNotFoundError:
+            return "Error: PDF file not found."
+        except Exception as e:
+            return f"Error reading PDF: {e}"
+        return text
+
     def fileChooser(self, event):
-        self.file = askopenfile(mode = "r", filetypes = [("pdf files", "*.pdf")])
-        self.pdf_file = self.file.name
+        #file selection dialogue box for choosing PDF files (only)
+        try:
+            self.file = askopenfile(mode = "r", filetypes = [("pdf files", "*.pdf")])
+            self.pdf_file = self.file.name
 
-        self.locationtext.text = self.pdf_file
-        self.locationtext.size_hint = (0.7, 0.11)
-    
+            #display directory of pdf file
+            self.locationtext.text = self.pdf_file
+            self.locationtext.size_hint = (0.7, 0.11)
+        except Exception as e:
+            return f"Error reading PDF: {e}"
+        return self.pdf_file
 
-    def search(self, event):
+    def search(self, event, text):
+        find_me_text = self.findmeTextbox.text.lower()
         self.searchingLabel.text = "==Searching=="
+
+
 
 
     def build(self):
@@ -57,13 +76,17 @@ class SentenceLocatorApp(MDApp):
         self.searchingLabel = Label(text = "", size_hint = (1, 1), font_size = 24, font_name = "Tahoma", bold = True, color = (0, 0, 0, 1),
                                     pos_hint = {"center_x": 0.55, "center_y": 0.39})
         
-        self.displayresult = TextInput(size_hint = (0.9, 0.31), pos_hint = {"center_x": 0.48, "center_y": 0.19}, font_name = "Tahoma",
-                                       font_size = 20, disabled = True)
+        self.displayResultCount = Label(text = "Occurences: 0", size_hint = (None, None), height = 40, bold = True, color = (0, 0, 0, 1), 
+                                        pos_hint = {"center_x": 0.15, "center_y": 0.26})
+        
+        self.displayResultLocation = Label(text = "Found on lines:", size_hint = (None, None), height = 40, bold = True, color = (0, 0, 0, 1), 
+                                   pos_hint = {"center_x": 0.15, "center_y": 0.2})
         
 
         
         #adding widgets to layout
-        layout.add_widget(self.displayresult)
+        layout.add_widget(self.displayResultLocation)
+        layout.add_widget(self.displayResultCount)
         layout.add_widget(self.searchingLabel)
         layout.add_widget(self.findmeButton)
         layout.add_widget(self.findmeTextbox)
@@ -77,5 +100,5 @@ class SentenceLocatorApp(MDApp):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
 
-    
-SentenceLocatorApp().run()
+if __name__ == "__main__":
+    SentenceLocatorApp().run()
