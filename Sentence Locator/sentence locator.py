@@ -13,20 +13,6 @@ from PyPDF2 import PdfReader
 Window.size = (450, 600)
 
 class SentenceLocatorApp(App):
-    def extract_text_from_pdf(self, event, pdf_file):
-        #extract text from selected pdf file
-        text = ""
-        try:
-            with open(pdf_file, 'rb') as file:
-                reader = PdfReader(file)
-                for page in reader.pages:
-                    text += page.extract_text() + "\n"
-        except FileNotFoundError:
-            return "Error: PDF file not found."
-        except Exception as e:
-            return f"Error reading PDF: {e}"
-        return text
-
     def fileChooser(self, event):
         #file selection dialogue box for choosing PDF files (only)
         try:
@@ -38,11 +24,45 @@ class SentenceLocatorApp(App):
             self.locationtext.size_hint = (0.7, 0.11)
         except Exception as e:
             return f"Error reading PDF: {e}"
-        return self.pdf_file
+        
+        #extract text from selected pdf file
+        self.text = ""
+        try:
+            with open(self.pdf_file, 'rb') as file:
+                reader = PdfReader(file)
+                for page in reader.pages:
+                    text += page.extract_text() + "\n"
+        except FileNotFoundError:
+            return "Error: PDF file not found."
+        except Exception as e:
+            return f"Error reading PDF: {e}"
+        return self.text
 
     def search(self, event, text):
         find_me_text = self.findmeTextbox.text.lower()
+        extracted_text = self.text
         self.searchingLabel.text = "==Searching=="
+
+        if not extracted_text:
+            self.displayResultCount.text = "Occurences: 0"
+            self.displayResultLocation.text = "Found on lines: No PDF loaded"
+
+        lines = extracted_text.lower().splitlines()
+        occurences = 0
+        found_lines = []
+        line_number = 1
+
+        for line in lines:
+            if find_me_text in line:
+                occurences += line.count(find_me_text)
+                found_lines.append(str(line_number))
+            line_number =+ 1 
+
+        self.displayResultCount.text = f"Occurences: {occurences}"
+        if found_lines:
+            self.displayResultLocation.text = f"Found on lines: {', '.join(found_lines)}"
+        else:
+            self.displayResultLocation.text = "Found on lines: No lines contain the search term."
 
 
 
@@ -77,10 +97,10 @@ class SentenceLocatorApp(App):
                                     pos_hint = {"center_x": 0.55, "center_y": 0.39})
         
         self.displayResultCount = Label(text = "Occurences: 0", size_hint = (None, None), height = 40, bold = True, color = (0, 0, 0, 1), 
-                                        pos_hint = {"center_x": 0.15, "center_y": 0.26})
+                                        pos_hint = {"center_x": 0.2, "center_y": 0.26}, font_size = 25, font_name = "Tahoma")
         
         self.displayResultLocation = Label(text = "Found on lines:", size_hint = (None, None), height = 40, bold = True, color = (0, 0, 0, 1), 
-                                   pos_hint = {"center_x": 0.15, "center_y": 0.2})
+                                           pos_hint = {"center_x": 0.217, "center_y": 0.15}, font_size = 25, font_name = "Tahoma")
         
 
         
