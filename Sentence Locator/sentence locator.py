@@ -26,7 +26,7 @@ class SentenceLocatorApp(App):
             return f"Error reading PDF: {e}"
         
         #extract text from selected pdf file
-        self.text = ""
+        text = ""
         try:
             with open(self.pdf_file, 'rb') as file:
                 reader = PdfReader(file)
@@ -36,18 +36,18 @@ class SentenceLocatorApp(App):
             return "Error: PDF file not found."
         except Exception as e:
             return f"Error reading PDF: {e}"
-        return self.text
+        return text
 
     def search(self, event, text):
         find_me_text = self.findmeTextbox.text.lower()
-        extracted_text = self.text
+        self.extracted_text = text
         self.searchingLabel.text = "==Searching=="
 
-        if not extracted_text:
+        if not self.extracted_text:
             self.displayResultCount.text = "Occurences: 0"
             self.displayResultLocation.text = "Found on lines: No PDF loaded"
 
-        lines = extracted_text.lower().splitlines()
+        lines = self.extracted_text.lower().splitlines()
         occurences = 0
         found_lines = []
         line_number = 1
