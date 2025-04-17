@@ -15,12 +15,18 @@ Window.size = (450, 350)
 
 class Mp4ToMp3App(App):
     def fileChooser(self, event):
-    #select the video file to convert
-        self.file = askopenfile(mode = "r", filetypes = [("mp4 file", "*.mp4")])
+    #select the video file to convert (mp4 and mkv supported)
+        self.file = askopenfile(mode = "r", filetypes = [("video files", "*.mp4 *.mkv"), ("mp4 files", "*.mp4"), ("MKV files", "*.mkv")])
         self.mp4_file = self.file.name
         self.locationtext.text = self.mp4_file
         self.locationtext.size_hint = (0.7, 0.19)
-        self.mp3_file = self.mp4_file.replace("mp4", "mp3")
+
+        if self.mp4_file.endswith(".mp4"):
+            self.mp3_file = self.mp4_file.replace("mp4", "mp3")
+        elif self.mp4_file.endswith(".mkv"):
+            self.mp3_file = self.mp4_file.replace("mkv", "mp3")
+        else:
+            print("Error: File Format Not Supported")
 
         self.convertButton.disabled = False
 
