@@ -16,7 +16,7 @@ class SentenceLocatorApp(App):
     def fileChooser(self, event):
         #file selection dialogue box for choosing PDF files (only)
         try:
-            self.file = askopenfile(mode = "r", filetypes = [("pdf files", "*.pdf")])
+            self.file = askopenfile(mode = "r", filetypes = [("files", "*.pdf" "*.docx"), ("pdf files", "*.pdf"), ("word files", "*.docx")])
             self.pdf_file = self.file.name
 
             #display directory of pdf file
@@ -26,35 +26,38 @@ class SentenceLocatorApp(App):
             return f"Error reading PDF: {e}"
         
         #extract text from selected pdf file
-        text = ""
+        self.text = ""
         try:
             with open(self.pdf_file, 'rb') as file:
                 reader = PdfReader(file)
                 for page in reader.pages:
-                    text += page.extract_text() + "\n"
+                    self.text += page.extract_text() + "\n"
         except FileNotFoundError:
             return "Error: PDF file not found."
         except Exception as e:
             return f"Error reading PDF: {e}"
-        return text
+        return self.text
+    
+    def call_search_with_text(self, instance):
+        search_text = self.findmeTextbox.text.lower()
+        self.search(self.text, search_text)
 
-    def search(self, event, text):
-        find_me_text = self.findmeTextbox.text.lower()
-        self.extracted_text = text
+    def search(self, text, search_text):
+        # find_me_text = self.findmeTextbox.text.lower()
         self.searchingLabel.text = "==Searching=="
 
-        if not self.extracted_text:
+        if not text:
             self.displayResultCount.text = "Occurences: 0"
             self.displayResultLocation.text = "Found on lines: No PDF loaded"
 
-        lines = self.extracted_text.lower().splitlines()
+        lines = self.text.lower().splitlines()
         occurences = 0
         found_lines = []
         line_number = 1
 
         for line in lines:
-            if find_me_text in line:
-                occurences += line.count(find_me_text)
+            if search_text in line:
+                occurences += line.count(search_text)
                 found_lines.append(str(line_number))
             line_number =+ 1 
 
@@ -91,7 +94,7 @@ class SentenceLocatorApp(App):
                                        font_size = 20)
         
         self.findmeButton = Button(text = "Search", size_hint = (None, None), height = 40, pos_hint = {"center_x": 0.14, "center_y": 0.39},
-                                   on_press = self.search)
+                                   on_press = self.call_search_with_text)
         
         self.searchingLabel = Label(text = "", size_hint = (1, 1), font_size = 24, font_name = "Tahoma", bold = True, color = (0, 0, 0, 1),
                                     pos_hint = {"center_x": 0.55, "center_y": 0.39})
