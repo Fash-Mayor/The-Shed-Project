@@ -46,7 +46,7 @@ class SentenceLocatorApp(App):
         # find_me_text = self.findmeTextbox.text.lower()
         self.searchingLabel.text = "==Searching=="
 
-        if not text:
+        if self.text is None:
             self.displayResultCount.text = "Occurences: 0"
             self.displayResultLocation.text = "Found on lines: No PDF loaded"
 
@@ -59,7 +59,7 @@ class SentenceLocatorApp(App):
             if search_text in line:
                 occurences += line.count(search_text)
                 found_lines.append(str(line_number))
-            line_number =+ 1 
+            line_number += 1 
 
         self.displayResultCount.text = f"Occurences: {occurences}"
         if found_lines:
