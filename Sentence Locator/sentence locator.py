@@ -9,34 +9,50 @@ from kivy.graphics import Color
 
 from tkinter.filedialog import askopenfile
 from PyPDF2 import PdfReader
+from docx import Document
 
 Window.size = (450, 600)
 
 class SentenceLocatorApp(App):
     def fileChooser(self, event):
-        #file selection dialogue box for choosing PDF files (only)
+        #file selection dialogue box for choosing PDF and word files
         try:
-            self.file = askopenfile(mode = "r", filetypes = [("all files", "*.pdf" "*.docx"), ("pdf files", "*.pdf"), ("word files", "*.docx")])
-            self.pdf_file = self.file.name
+            self.file = askopenfile(mode = "r", filetypes = [("supported files", "*.pdf *.docx"), ("pdf files", "*.pdf"), ("word files", "*.docx")])
+            self.upload_file = self.file.name
 
-            #display directory of pdf file
-            self.locationtext.text = self.pdf_file
+            #display directory of uploaded file
+            self.locationtext.text = self.upload_file
             self.locationtext.size_hint = (0.7, 0.11)
         except Exception as e:
-            return f"Error reading PDF: {e}"
+            return f"Error reading file: {e}"
         
-        #extract text from selected pdf file
+        #extract text from selected file
         self.text = ""
-        try:
-            with open(self.pdf_file, 'rb') as file:
-                reader = PdfReader(file)
-                for page in reader.pages:
-                    self.text += page.extract_text() + "\n"
-        except FileNotFoundError:
-            return "Error: PDF file not found."
-        except Exception as e:
-            return f"Error reading PDF: {e}"
-        return self.text
+        #for pdf files
+        if self.upload_file.endswith(".pdf"):
+            try:
+                with open(self.upload_file, 'rb') as file:
+                    reader = PdfReader(file)
+                    for page in reader.pages:
+                        self.text += page.extract_text() + "\n"
+            except FileNotFoundError:
+                return "Error: PDF file not found."
+            except Exception as e:
+                return f"Error reading PDF: {e}"
+            return self.text
+        #for word files
+        elif self.upload_file.endswith(".docx"):
+            try:
+                document = Document(self.upload_file)
+                with open(self.upload_file,'rb') as file:
+                    #reader = Document(file)
+                    for paragraph in document.paragraphs:
+                        self.text += paragraph.text + "\n"
+            except FileNotFoundError:
+                return "Error: Word file not found."
+            except Exception as e:
+                return f"Error reading Word file: {e}"
+            return self.text
     
     def call_search_with_text(self, instance):
         search_text = self.findmeTextbox.text.lower()
