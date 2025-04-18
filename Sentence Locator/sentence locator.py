@@ -16,7 +16,7 @@ class SentenceLocatorApp(App):
     def fileChooser(self, event):
         #file selection dialogue box for choosing PDF files (only)
         try:
-            self.file = askopenfile(mode = "r", filetypes = [("files", "*.pdf" "*.docx"), ("pdf files", "*.pdf"), ("word files", "*.docx")])
+            self.file = askopenfile(mode = "r", filetypes = [("all files", "*.pdf" "*.docx"), ("pdf files", "*.pdf"), ("word files", "*.docx")])
             self.pdf_file = self.file.name
 
             #display directory of pdf file
@@ -59,6 +59,7 @@ class SentenceLocatorApp(App):
             if search_text in line:
                 occurences += line.count(search_text)
                 found_lines.append(str(line_number))
+                self.searchingLabel.text = "==Found=="
             line_number += 1 
 
         self.displayResultCount.text = f"Occurences: {occurences}"
