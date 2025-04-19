@@ -4,8 +4,7 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
-from kivy.graphics import Rectangle
-from kivy.graphics import Color
+from kivy.graphics import Rectangle, Color
 
 from tkinter.filedialog import askopenfile
 from PyPDF2 import PdfReader

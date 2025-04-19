@@ -1,37 +1,48 @@
-![TheShedProject.png](The_Shed_Project.png)
 # The Shed Project
-![Github last commit](https://img.shields.io/github/last-commit/Fash-Mayor/The-Shed-Project)
 
-The Shed Project is centered around creating tools for devices.
+![TheShedProject.png](The_Shed_Project.png)
 
-## Table of Content (TOC)
+![Github last commit](https://img.shields.io/github/last-commit/Fash-Mayor/The-Shed-Project)\
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Fash-Mayor/The-Shed-Project/graphs/commit-activity)
 
- - [Project 1 - Audio Recorder](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#audio-recorder)
- - [Project 2 - Mp4 to Mp3](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#mp4-to-mp3-audio-extractor)
- - [Project 3 - Music Player](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#music-player)
- - [Project 4 - PDF to Audio](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#pdf-to-audio)
- - [Project 5 - Spotify Downloader](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#spotify-downloader)
- - [Project 6 - Password Generator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#password-generator)
- - [Project 7 - Sentence Locator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#sentence-locator)
- - [Project 8](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-8)
- - [Project 9](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-9)
- - [Project 10](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-10)
+## Overview
 
+Hi, welcome to The Shed Project! This repository contains various tools and applications built using the Kivy framework. As a learning project, it serves as a digital workshop where different utilities are built to explore and master Kivy's capabilities. Each tool aims to solve a task.
+
+## Table of Content
+
+- [Overview](#overview)
+- [Tools/Apps](#toolsapps)
+     - [Project 1 - Audio Recorder](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#audio-recorder)
+     - [Project 2 - Mp4 to Mp3](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#mp4-to-mp3-audio-extractor)
+     - [Project 3 - Music Player](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#music-player)
+     - [Project 4 - PDF to Audio](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#pdf-to-audio)
+     - [Project 5 - Spotify Downloader](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#spotify-downloader)
+     - [Project 6 - Password Generator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#password-generator)
+     - [Project 7 - Sentence Locator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#sentence-locator)
+     - [Project 8 - Youtube Downloader](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#youtube-downloader)
+     - [Project 9](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-9)
+     - [Project 10](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-10)
+
+## Tools/Apps
 
 ## Audio Recorder 
-### Description
+
+**Description:**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Code
+
+**Code:**\
 python
 python
 python
-### Project 1 Output
-![alt text](Project_1.png)
-### Project 1 Explanation
+
+**Project 1 Output:**\
+![app view](https://github.com/Fash-Mayor/The-Shed-Project/md_imgs/audioRecorder.png)
+
+**Project 1 Lesson:**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 1 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 1 Code Explanation
+
+**Project 1 Code Issues Faced:**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 
 
@@ -137,7 +148,7 @@ This project is about creating a tool for devices. The tool will be used to perf
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 
 
-## Project 8
+## Youtube Downloader
 ### Project 8 Description
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 ### Project 8 Code

@@ -55,7 +55,7 @@ class AudioRecorderApp(MDApp):
         wf.setframerate(RATE)
 
         #start recording
-        self.message_label.text = f"Recording..."
+        self.messageLabel.text = f"Recording..."
         #self.record_button.text = "Recording..."
         self.recording_active = True
 
@@ -64,13 +64,13 @@ class AudioRecorderApp(MDApp):
             wf.writeframes(data)
 
         #stop recording
-        self.record_button.text = "Record"
+        self.recordButton.text = "Record"
         stream.stop_stream()
         stream.close()
         audio.terminate()
         wf.close()
 
-        self.message_label.text = f"Recording {self.recording_counter} Saved"
+        self.messageLabel.text = f"Recording {self.recording_counter} Saved"
         print("Recording Ended...")
 
         self.recording_counter += 1
@@ -81,8 +81,8 @@ class AudioRecorderApp(MDApp):
         self.recording_thread.start()
 
         #enable stop button
-        self.stop_buton.disabled = False
-        self.record_button.disabled = True
+        self.stopButton.disabled = False
+        self.recordButton.disabled = True
 
     def stop_recording(self, event):
         self.recording_active = False
@@ -92,8 +92,8 @@ class AudioRecorderApp(MDApp):
         self.recording_thread = None
 
         #disable the stop button
-        self.record_button.disabled = False
-        self.stop_buton.disabled = True 
+        self.recordButton.disabled = False
+        self.stopButton.disabled = True 
 
     def build(self):
         layout = RelativeLayout()
