@@ -29,15 +29,60 @@ Hi, welcome to The Shed Project! This repository contains various tools and appl
 ## Audio Recorder 
 
 **Description:**\
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+A simple application to record audio using the device's microphone and save it to a file. Using ```pyaudio``` and ```wave``` modules to record the audio and save it to a file in the WAV format.
 
-**Code:**\
-python
-python
-python
+**Code:**
+```python
+def record_audio(self):
+        #set recording parameters
+        audio = pyaudio.PyAudio()
 
-**Project 1 Output:**\
-![app view](https://github.com/Fash-Mayor/The-Shed-Project/md_imgs/audioRecorder.png)
+        FORMAT = pyaudio.paInt16 #-32768 to +32767
+
+        CHANNELS = 1
+
+        RATE = 44100
+
+        CHUNK = 1024
+
+        #open stream for recording
+        stream = audio.open(format = FORMAT, channels = CHANNELS, rate = RATE, frames_per_buffer = CHUNK, input = True)
+
+        #directory to save recorded audio
+        directory = self.get_downloads_path()
+        file_name = f"recording{self.recording_counter}.wave"
+
+        #create wave file for saving recording
+        wf = wave.open(os.path.join(directory, file_name), "wb")
+        wf.setnchannels(CHANNELS)
+        wf.setsampwidth(audio.get_sample_size(FORMAT))
+        wf.setframerate(RATE)
+
+        #start recording
+        self.messageLabel.text = f"Recording..."
+        #self.record_button.text = "Recording..."
+        self.recording_active = True
+
+        while self.recording_active:
+            data = stream.read(CHUNK)
+            wf.writeframes(data)
+
+        #stop recording
+        self.recordButton.text = "Record"
+        stream.stop_stream()
+        stream.close()
+        audio.terminate()
+        wf.close()
+
+        self.messageLabel.text = f"Recording {self.recording_counter} Saved"
+        print("Recording Ended...")
+
+        self.recording_counter += 1
+```
+
+**Project 1 Output:**
+
+![app view](./md%20imgs/audioRecorder.png)
 
 **Project 1 Lesson:**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
