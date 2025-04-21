@@ -41,7 +41,7 @@ class PasswordGeneratorApp(App):
         numbers = string.digits
 
         merge = upper + lower + symbols + numbers
-        shuffle = random.sample(merge, length)#Cannot generate more than 94length of password
+        shuffle = random.sample(merge, length)#Cannot generate more than 94 length of password
         password = "".join(shuffle)
         print(f"Password is: {password}")
         self.GeneratingLabel.text = "Generated"

@@ -14,15 +14,17 @@ Hi, welcome to The Shed Project! This repository contains various tools and appl
 - [Overview](#overview)
 - [Tools/Apps](#toolsapps)
      - [Project 1 - Audio Recorder](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#audio-recorder)
-     - [Project 2 - Mp4 to Mp3](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#mp4-to-mp3-audio-extractor)
+     - [Project 2 - Mp4 to Mp3 (Audio Extractor)](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#mp4-to-mp3-audio-extractor)
      - [Project 3 - Music Player](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#music-player)
      - [Project 4 - PDF to Audio](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#pdf-to-audio)
-     - [Project 5 - Spotify Downloader](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#spotify-downloader)
-     - [Project 6 - Password Generator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#password-generator)
-     - [Project 7 - Sentence Locator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#sentence-locator)
-     - [Project 8 - Youtube Downloader](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#youtube-downloader)
-     - [Project 9](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-9)
-     - [Project 10](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-10)
+     - [Project 5 - Password Generator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#password-generator)
+     - [Project 6 - Sentence Locator](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#sentence-locator)
+     - [Project 7](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-7)
+     - [Project 8](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-8)
+    - [Project 9](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-9)
+    - [Project 10](https://github.com/Fash-Mayor/The-Shed-Project?tab=readme-ov-file#project-10)
+- [Usage](#usage)
+- [Contributing](#contributing)
 
 ## Tools/Apps
 
@@ -34,211 +36,281 @@ A simple application to record audio using the device's microphone and save it t
 **Code:**
 ```python
 def record_audio(self):
-        #set recording parameters
-        audio = pyaudio.PyAudio()
+    #set recording parameters
+    audio = pyaudio.PyAudio()
 
-        FORMAT = pyaudio.paInt16 #-32768 to +32767
+    FORMAT = pyaudio.paInt16 #-32768 to +32767
 
-        CHANNELS = 1
+    CHANNELS = 1
 
-        RATE = 44100
+    RATE = 44100
 
         CHUNK = 1024
 
-        #open stream for recording
-        stream = audio.open(format = FORMAT, channels = CHANNELS, rate = RATE, frames_per_buffer = CHUNK, input = True)
+    #open stream for recording
+    stream = audio.open(format = FORMAT, channels = CHANNELS, rate = RATE,frames_per_buffer = CHUNK, input = True)
 
-        #directory to save recorded audio
-        directory = self.get_downloads_path()
-        file_name = f"recording{self.recording_counter}.wave"
+    #directory to save recorded audio
+    directory = self.get_downloads_path()
+    file_name = f"recording{self.recording_counter}.wave"
 
-        #create wave file for saving recording
-        wf = wave.open(os.path.join(directory, file_name), "wb")
-        wf.setnchannels(CHANNELS)
-        wf.setsampwidth(audio.get_sample_size(FORMAT))
-        wf.setframerate(RATE)
+    #create wave file for saving recording
+    wf = wave.open(os.path.join(directory, file_name), "wb")
+    wf.setnchannels(CHANNELS)
+    wf.setsampwidth(audio.get_sample_size(FORMAT))
+    wf.setframerate(RATE)
 
-        #start recording
-        self.messageLabel.text = f"Recording..."
-        #self.record_button.text = "Recording..."
-        self.recording_active = True
+    #start recording
+    self.messageLabel.text = f"Recording..."
+    #self.record_button.text = "Recording..."
+    self.recording_active = True
 
-        while self.recording_active:
-            data = stream.read(CHUNK)
-            wf.writeframes(data)
+    while self.recording_active:
+        data = stream.read(CHUNK)
+        wf.writeframes(data)
 
-        #stop recording
-        self.recordButton.text = "Record"
-        stream.stop_stream()
-        stream.close()
-        audio.terminate()
-        wf.close()
+    #stop recording
+    self.recordButton.text = "Record"
+    stream.stop_stream()
+    stream.close()
+    audio.terminate()
+    wf.close()
 
-        self.messageLabel.text = f"Recording {self.recording_counter} Saved"
-        print("Recording Ended...")
+    self.messageLabel.text = f"Recording {self.recording_counter} Saved"
+    print("Recording Ended...")
 
-        self.recording_counter += 1
+    self.recording_counter += 1
 ```
 
-**Project 1 Output:**
+**Output:**
 
 ![app view](./md%20imgs/audioRecorder.png)
 
-**Project 1 Lesson:**\
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-
-**Project 1 Code Issues Faced:**\
-This project is about creating a tool for devices. The tool will be used to perform a specific task
 
 
 ## Mp4 to Mp3 (Audio Extractor)
-### Project 2 Description
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 2 Code
-python
-python
-python
-### Project 2 Output
-![alt text](Project_2.png)
-### Project 2 Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 2 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 2 Code Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+
+**Description**\
+An application that extracts the audio from any selected video in ``.mp4`` or ``.mkv`` format using the ``moviepy`` module and saves it in a ``.mp3`` format in the same directory as the selected video.
+
+**Code**
+```python
+#extracting audio from video
+self.video = VideoFileClip(self.mp4_file)
+self.audio = self.video.audio
+#basic error handling
+try:
+    self.audio.write_audiofile(self.mp3_file) #saves audio file to the same directory as the video
+
+    print("Completed Sucessfully")
+
+    self.successLabel.text = "Successfully Extracted"
+
+    self.audio.close()
+    self.video.close()
+except:
+    print("Error Writing Audio. Please Try Again")
+
+    self.errLabel.text = "An Error Occured While Extracting. Please Try Again."
+```
+
+**Output**
+
+![app view](./md%20imgs/mp4_mp3.png)
+
 
 
 ## Music Player
-### Project 3 Description
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 3 Code
-python
-python
-python
-### Project 3 Output
-![alt text](Project_2.png)
-### Project 3 Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 3 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 3 Code Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+
+**Description**\
+A music player app put together using various kivy modules including ``soundloader``, ``progressbar``, ``slider`` and other python modules like the ``os``, ``time``, and ``random``.
+
+**Code**
+```python
+self.playButton.disabled = True
+    self.stopButton.disabled = False
+    self.song_title = self.song_list[random.randrange(0, self.song_count)]
+    print(self.song_title)
+    self.sound = SoundLoader.load("{}/{}".format(self.music_dir, selfsong_title))
+    self.songLabel.text = self.song_title[0:-4]
+
+    jpg_path = os.path.join(self.music_dir, self.songLabel.text + ".jpg")
+    png_path = os.path.join(self.music_dir, self.songLabel.text + ".png")
+    if os.path.exists(jpg_path):
+        self.albumImage.source = jpg_path
+    elif os.path.exists(png_path):
+        self.albumImage.source = png_path
+    else:
+        self.albumImage.source = "music_dir/default_album.png"
+
+    self.progressbarEvent = Clock.schedule_interval(self.updateprogressbar, self.sound.length / 60)
+    self.timeEvent = Clock.schedule_interval(self.settime, 1)
+
+    self.sound.play()
+    self.playingLabel.text = " === Playing === "
+    self.stopButton.disabled = False
+```
+
+**Output**
+
+![app view](./md%20imgs/musicplayer.png)
+
 
 
 ## PDF to Audio
-### Project 4 Description
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 4 Code
-python
-python
-python
-### Project 4 Output
-![alt text](Project_2.png)
-### Project 4 Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 4 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 4 Code Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
 
+**Description**\
+This tool converts PDF's into ``.mp3`` audio files with the use of ``PyPDF3``, ``pyttsx3``, and ``pdfplumber`` modules.
 
-## Spotify Downloader
-### Project 5 Description
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 5 Code
-python
-python
-python
-### Project 5 Output
-![alt text](Project_2.png)
-### Project 5 Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 5 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 5 Code Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+**Code**
+```python
+self.successErrlabel.text = ""
+    #error handling while converting
+    try:
+        book = open(self.pdf_file, "rb")
+        pdfReader = PyPDF3.PdfFileReader(book)
+
+        pages = pdfReader.numPages
+
+        finalText = ""
+
+        try:        
+            self.successErrlabel.text = "Extracting text..."
+            self.successErrlabel.pos_hint = {"center_x": 0.5, "center_y": 0.23}
+            with pdfplumber.open(self.pdf_file) as pdf:
+                for i in range(0, pages):
+                    page = pdf.pages[i]
+                    text = page.extract_text()
+                    finalText += text
+
+            self.successErrlabel.text = ""
+            self.successErrlabel.text = "Successfully Extracted the Text"
+            self.successErrlabel.pos_hint = {"center_x": 0.5, "center_y": 0.23}
+
+                try:
+                    self.successErrlabel.text = ""
+                    self.successErrlabel.text = "Converting...please wait"
+                    self.successErrlabel.pos_hint = {"center_x": 0.5, "center_y": 0.23}                    
+                    
+                    engine = pyttsx3.init()
+                    engine.save_to_file(finalText, "audiobook.mp3") #saves to the directory where the code is run#how to save to downloads folder??
+                    engine.runAndWait()
+
+                    self.successErrlabel.text = ""
+                    self.successErrlabel.text = "Successfully Converted"
+                    self.successErrlabel.pos_hint = {"center_x": 0.5, "center_y": 0.23}
+                    
+                except:
+                    self.successErrlabel.text = "Problem converting...Please try again"
+                    self.successErrlabel.pos_hint = {"center_x": 0.5, "center_y": 0.23}
+        except:
+            self.successErrlabel.text = "Problem extracting the text"
+            self.successErrlabel.pos_hint = {"center_x": 0.5, "center_y": 0.23}
+
+    except:
+        self.successErrlabel.text = "Problem opening the pdf file"
+        self.successErrlabel.pos_hint = {"center_x": 0.5, "center_y": 0.23}
+```
+
+**Output**
+
+![app view](./md%20imgs/mp4_mp3.png)
+
 
 
 ## Password Generator
-### Project 6 Description
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 6 Code
-python
-python
-python
-### Project 6 Output
-![alt text](Project_2.png)
-### Project 6 Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 6 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 6 Code Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+
+**Description**\
+This app generates a random password of any length between 7 and 95. It uses the ``string`` and ``random`` modules to merge and shuffle ``ascii`` characters then generates a sample of any length inputed by the user.
+
+**Code**
+```python
+def generatePassword(self, length):
+    #code block to generate the password
+    upper = string.ascii_uppercase
+    lower = string.ascii_lowercase
+    symbols = string.punctuation
+    numbers = string.digits
+
+    merge = upper + lower + symbols + numbers
+    shuffle = random.sample(merge, length)#Cannot generate more than 94 length of password
+    password = "".join(shuffle)
+    print(f"Password is: {password}")
+    self.GeneratingLabel.text = "Generated"
+    self.GeneratedPasswordDisplay.text = password
+```
+
+**Output**
+
+![app view](./md%20imgs/mp4_mp3.png)
+
 
 
 ## Sentence Locator
-### Project 7 Description
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 7 Code
-python
-python
-python
-### Project 7 Output
-![alt text](Project_2.png)
-### Project 7 Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 7 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 7 Code Explanation
+
+**Description**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
 
+**Code**
+python
 
-## Youtube Downloader
-### Project 8 Description
+**Output**
+
+![app view](./md%20imgs/sentenceLocator.png)
+
+
+
+## Project 7
+
+**Description**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 8 Code
+
+**Code**
 python
-python
-python
-### Project 8 Output
+
+**Output**
+
 ![alt text](Project_2.png)
-### Project 8 Explanation
+
+
+
+## Project 8
+
+**Description**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 8 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 8 Code Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+
+**Code**
+python
+
+**Output**
+
+![alt text](Project_2.png)
+
 
 
 ## Project 9
-### Project 9 Description
+
+**Description**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 9 Code
+
+**Code**
 python
-python
-python
-### Project 9 Output
+
+**Output**
+
 ![alt text](Project_2.png)
-### Project 9 Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 9 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 9 Code Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+
 
 
 ## Project 10
-### Project 10 Description
+
+**Description**\
 This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 10 Code
+
+**Code**
 python
-python
-python
-### Project 10 Output
+
+**Output**
+
 ![alt text](Project_2.png)
-### Project 10 Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 10 Conclusion
-This project is about creating a tool for devices. The tool will be used to perform a specific task
-### Project 10 Code Explanation
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+

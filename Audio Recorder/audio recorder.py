@@ -128,5 +128,5 @@ class AudioRecorderApp(MDApp):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
 
-
-AudioRecorderApp().run()
+if __name__ == "__main__":
+    AudioRecorderApp().run()

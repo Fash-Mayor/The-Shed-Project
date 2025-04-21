@@ -15,7 +15,7 @@ Window.size = (450, 350)
 
 class Mp4ToMp3App(App):
     def fileChooser(self, event):
-    #select the video file to convert (mp4 and mkv supported)
+    #select the video file to extract audio from (mp4 and mkv supported)
         self.file = askopenfile(mode = "r", filetypes = [("video files", "*.mp4 *.mkv"), ("mp4 files", "*.mp4"), ("MKV files", "*.mkv")])
         self.mp4_file = self.file.name
         self.locationtext.text = self.mp4_file
@@ -31,29 +31,29 @@ class Mp4ToMp3App(App):
         self.convertButton.disabled = False
 
     def writeAudio(self):
-        #converting the video to audio
+        #extracting audio from video
         self.video = VideoFileClip(self.mp4_file)
         self.audio = self.video.audio
-        #basic error handling
+        #error handling
         try:
             self.audio.write_audiofile(self.mp3_file) #saves audio file to the same directory as the video
 
             print("Completed Sucessfully")
 
-            self.successLabel.text = "Successfully Converted"
+            self.successLabel.text = "Successfully Extracted"
 
             self.audio.close()
             self.video.close()
         except:
             print("Error Writing Audio. Please Try Again")
 
-            self.errLabel.text = "An Error Occured While Converting. Please Try Again."
+            self.errLabel.text = "An Error Occured While Extracting. Please Try Again."
 
     def writeAudioThread(self, event):
         #start writeaudiothread
         thread1 = Thread(target = self.writeAudio)
         thread1.start()
-        self.successLabel.text = "Converting..."
+        self.successLabel.text = "Extracting..."
 
     def build(self):
         layout = RelativeLayout()
@@ -70,7 +70,7 @@ class Mp4ToMp3App(App):
         self.locationtext = TextInput(text ="", size_hint = (0.7, 0.11), pos_hint = {"center_x": 0.62, "center_y": 0.87},
                                       disabled = True, font_name = "Tahoma")
 
-        self.convertButton = Button(text = "Convert", pos_hint = {"center_x": 0.5, "center_y": 0.66}, size_hint = (None, None),
+        self.convertButton = Button(text = "Extract", pos_hint = {"center_x": 0.5, "center_y": 0.66}, size_hint = (None, None),
                                     height = 50, bold = True, font_size = 24, on_press = self.writeAudioThread, disabled = True)
 
         self.successLabel = Label(text = "", pos_hint = {"center_x": 0.5, "center_y": 0.5}, size_hint = (1, 1),
@@ -92,4 +92,5 @@ class Mp4ToMp3App(App):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
 
-Mp4ToMp3App().run()
+if __name__ == "__main__":
+    Mp4ToMp3App().run()

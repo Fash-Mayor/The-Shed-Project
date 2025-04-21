@@ -135,5 +135,5 @@ class MusicPlayerApp(MDApp):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
     
-
-MusicPlayerApp().run()
+if __name__ == "__main__":
+    MusicPlayerApp().run()

@@ -79,6 +79,7 @@ class SentenceLocatorApp(App):
 
         self.displayResultCount.text = f"Occurences: {occurences}"
         if found_lines:
+            self.displayResultLocation.pos_hint = {"center_x": 0.31}
             self.displayResultLocation.text = f"Found on lines: {', '.join(found_lines)}"
         else:
             self.displayResultLocation.text = "Found on lines: No lines contain the search term."

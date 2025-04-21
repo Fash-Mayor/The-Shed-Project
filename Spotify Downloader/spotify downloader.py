@@ -16,7 +16,7 @@ import threading
 # Minimum Kivy version
 kivy.require('2.0.0')
 
-class SpotDownloaderApp(App):
+class SpotifyDownloaderApp(App):
     def build(self):
         Window.size = (400, 300)
         self.layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
@@ -152,5 +152,5 @@ class SpotDownloaderApp(App):
         """Thread-safe way to update the status label"""
         self.status_label.text = message
 
-if __name__ == '__main__':
-    SpotDownloaderApp().run()
+if __name__ == "__main__":
+    SpotifyDownloaderApp().run()
