@@ -249,10 +249,29 @@ def generatePassword(self, length):
 ## Sentence Locator
 
 **Description**\
-This project is about creating a tool for devices. The tool will be used to perform a specific task
+This app helps to locate words or sentences in any uploaded file of ``.docx`` and ``.pdf`` format. Using the ``PyPDF2`` module for extracting texts from ``.pdf`` files and the ``docx`` module for extracting texts from ``.docx`` files. The app will display the number of times the word or sentence appears and what line(s) they can be found.
 
 **Code**
-python
+```python
+lines = self.text.lower().splitlines()
+occurences = 0
+found_lines = []
+line_number = 1
+
+for line in lines:
+    if search_text in line:
+        occurences += line.count(search_text)
+        found_lines.append(str(line_number))
+        self.searchingLabel.text = "==Found=="
+    line_number += 1 
+
+self.displayResultCount.text = f"Occurences: {occurences}"
+if found_lines:
+    self.displayResultLocation.pos_hint = {"center_x": 0.31}
+    self.displayResultLocation.text = f"Found on lines: {', '.join(found_lines)}"
+else:
+    self.displayResultLocation.text = "Found on lines: No lines contain the search term."
+```
 
 **Output**
 
