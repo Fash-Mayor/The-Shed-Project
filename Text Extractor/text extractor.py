@@ -8,18 +8,38 @@ from kivy.uix.textinput import TextInput
 from kivy.graphics import Rectangle, Color
 from kivy.core.window import Window
 
-# from tkinter import askopenfile
+from tkinter.filedialog import askopenfile
+from PIL import Image
+import pytesseract #https://github.com/UB-Mannheim/tesseract/wiki for tesseract exe
 
-# install PILLOW and Pyytesseract
 
 Window.size = (500, 500)
 
 class ExttractingTextApp(App):
-    def extract_Text(self):
-        pass
+    def extract_Text(self, event):
+        self.path_to_tesseract = r"directory to tesseract exe"
+        path_to_image = self.image_file
 
-    def fileChooser(self):
-        pass
+        #Point Tesseract_cmd to tesseract.exe
+        pytesseract.tesseract_cmd = self.path_to_tesseract
+
+        img = Image.open(path_to_image)
+
+        #Extract tezt from image
+        text = pytesseract.image_to_string(img)
+
+        print(text)
+        self.imageText.text = text
+
+    def fileChooser(self, event):
+        self.file = askopenfile(mode = "r", filetypes = [("images", "*.png *.jpg"), ("png", "*.png"), ("jpg", "*.jpg")])
+        self.image_file = self.file.name
+
+        self.locationLabel.text = self.image_file #displaying just the name of file (without the directory)
+        self.locationLabel.pos_hint = {"canter_x": 0.5, "center_y": 0.2}
+
+        self.extract_text_button.disabled = False
+        self.choose_button.disabled = True
 
     def build(self):
         layout = RelativeLayout()
@@ -48,7 +68,7 @@ class ExttractingTextApp(App):
         self.locationLabel = Label(text = "", pos_hint = {"center_x": 0.5, "center_y": 20},
                                    size_hint = (1, 1), font_size = 20, color = (0, 0, 1))
         
-
+        #add widgets to layout
         layout.add_widget(self.imageText)
         layout.add_widget(self.choose_button)
         layout.add_widget(self.extract_text_button)
