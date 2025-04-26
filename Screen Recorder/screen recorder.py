@@ -6,6 +6,10 @@ from kivy.clock import Clock
 from kivy.graphics import Rectangle, Color
 from kivy.core.window import Window
 
+from PIL import Image
+import cv2
+import numpy as np
+import pyautogui
 #pip install opencv-python, numpy, puautogui
 
 Window.size = (450, 150)
@@ -16,15 +20,15 @@ class screenRecorderApp(App):
         self.recording_counter = 1 #increamenting the name of recording to prevent overriding
 
     def recordScreen(self, event):
-        # img = pyautogui.screenshot()
-        # frame = np.array(img)
-        # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        # self.out.write(frame)
+        img = pyautogui.screenshot()
+        frame = np.array(img)
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        self.out.write(frame)
         pass
 
     def toggle_recording(self, event):
         if not self.recording:
-            #self.out = cv2.VideoWrier(self.output_file, self.fps, self.out, self.recording, self.screen_size)
+            self.out = cv2.VideoWrier(self.output_file, self.fps, self.out, self.recording, self.screen_size)
             self.recording = True
 
             self.recordButton.text = "Stop Recording"
@@ -43,7 +47,7 @@ class screenRecorderApp(App):
     def build(self):
         layout = RelativeLayout()
 
-        # self.fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+        self.fourcc = cv2.VideoWriter_fourcc(*"mp4v")
         self.output_file = f"Recording{self.recording_counter}.mp4"
         self.fps = 30
         self.out = None
