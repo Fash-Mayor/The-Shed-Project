@@ -17,7 +17,7 @@ Window.size = (500, 500)
 
 class ExttractingTextApp(App):
     def extract_Text(self, event):
-        self.path_to_tesseract = r"directory to tesseract exe"
+        self.path_to_tesseract = r"Tesseract/tesseract.exe"
         path_to_image = self.image_file
 
         #Point Tesseract_cmd to tesseract.exe
