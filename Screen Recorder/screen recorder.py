@@ -28,7 +28,7 @@ class screenRecorderApp(App):
 
     def toggle_recording(self, event):
         if not self.recording:
-            self.out = cv2.VideoWrier(self.output_file, self.fps, self.out, self.recording, self.screen_size)
+            self.out = cv2.VideoWriter(self.output_file, self.fps, self.out, self.recording, self.screen_size)
             self.recording = True
 
             self.recordButton.text = "Stop Recording"
